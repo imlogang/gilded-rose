@@ -22,7 +22,7 @@ const (
 type GenericItem struct {
 	name                 string
 	sellIn, quality, age int
-	degredationRate      int
+	degradationRate      int
 	ageRate              int
 	itemType             int
 }
@@ -32,9 +32,9 @@ func (s *GenericItem) AgeItem() {
 	s.sellIn -= s.ageRate
 	if s.quality > 0 && s.quality < 50 {
 		if s.age > s.sellIn {
-			s.quality -= (s.degredationRate * 2)
+			s.quality -= (s.degradationRate * 2)
 		} else {
-			s.quality -= s.degredationRate
+			s.quality -= s.degradationRate
 		}
 	}
 }
@@ -64,7 +64,7 @@ func MakeStandardItem(name string, sellIn, quality int) *GenericItem {
 		name:            name,
 		sellIn:          sellIn,
 		quality:         quality,
-		degredationRate: 1,
+		degradationRate: 1,
 		ageRate:         1,
 		itemType:        STANDARD,
 	}
@@ -75,7 +75,7 @@ func MakeConjuredItem(name string, sellIn, quality int) *GenericItem {
 		name:            name,
 		sellIn:          sellIn,
 		quality:         quality,
-		degredationRate: 2,
+		degradationRate: 2,
 		ageRate:         1,
 		itemType:        CONJURED,
 	}
@@ -86,7 +86,7 @@ func MakeLegendaryItem(name string, sellIn, quality int) *GenericItem {
 		name:            name,
 		sellIn:          sellIn,
 		quality:         quality,
-		degredationRate: 0,
+		degradationRate: 0,
 		ageRate:         0,
 		itemType:        LEGENDARY,
 	}
@@ -97,7 +97,7 @@ func MakeCheeseItem(name string, sellIn, quality int) *GenericItem {
 		name:            name,
 		sellIn:          sellIn,
 		quality:         quality,
-		degredationRate: -1,
+		degradationRate: -1,
 		ageRate:         1,
 		itemType:        CHEESE,
 	}
@@ -108,7 +108,7 @@ func MakeBACKSTAGE_Item(name string, sellIn, quality int) *GenericItem {
 		name:            name,
 		sellIn:          sellIn,
 		quality:         quality,
-		degredationRate: -1,
+		degradationRate: -1,
 		ageRate:         1,
 		itemType:        BACKSTAGE_PASSES,
 	}
