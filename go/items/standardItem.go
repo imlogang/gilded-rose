@@ -12,10 +12,11 @@ type Item interface {
 }
 
 const (
-	STANDARD  = iota
-	LEGENDARY = iota
-	CONJURED  = iota
-	CHEESE    = iota
+	STANDARD         = iota
+	LEGENDARY        = iota
+	CONJURED         = iota
+	CHEESE           = iota
+	BACKSTAGE_PASSES = iota
 )
 
 type GenericItem struct {
@@ -99,5 +100,16 @@ func MakeCheeseItem(name string, sellIn, quality int) *GenericItem {
 		degredationRate: -1,
 		ageRate:         1,
 		itemType:        CHEESE,
+	}
+}
+
+func MakeBACKSTAGE_Item(name string, sellIn, quality int) *GenericItem {
+	return &GenericItem{
+		name:            name,
+		sellIn:          sellIn,
+		quality:         quality,
+		degredationRate: -1,
+		ageRate:         1,
+		itemType:        BACKSTAGE_PASSES,
 	}
 }

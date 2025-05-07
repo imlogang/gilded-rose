@@ -1,7 +1,7 @@
-package main
+package items
 
 import (
-	"gildedRose/items"
+	"gildedRose"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -11,14 +11,14 @@ import (
 //	main()
 //}
 
-func Test_Item_Managment(t *testing.T) {
+func Test_Item_Management(t *testing.T) {
 	testCases := []struct {
 		testName string
 
 		wantedAge     int
 		wantedSellIn  int
 		wantedQuality int
-		testItem      items.Item
+		testItem      Item
 	}{
 		// {
 		// 	testName:      "Conjured Item Happy Path",
@@ -29,14 +29,14 @@ func Test_Item_Managment(t *testing.T) {
 		// },
 		{
 			testName:      "Conjured Item Happy Path",
-			testItem:      items.MakeConjuredItem("Conjured Item", 10, 2),
+			testItem:      MakeConjuredItem("Conjured Item", 10, 2),
 			wantedAge:     1,
 			wantedSellIn:  9,
 			wantedQuality: 0,
 		},
 		{
 			testName:      "Legendary Item Happy Path",
-			testItem:      items.MakeLegendaryItem("Legendary Item", 10, 2),
+			testItem:      MakeLegendaryItem("Legendary Item", 10, 2),
 			wantedAge:     0,
 			wantedSellIn:  10,
 			wantedQuality: 2,
@@ -50,14 +50,14 @@ func Test_Item_Managment(t *testing.T) {
 		// },
 		{
 			testName:      "Standard Item Happy Path",
-			testItem:      items.MakeStandardItem("Standard Item", 10, 1),
+			testItem:      MakeStandardItem("Standard Item", 10, 1),
 			wantedAge:     1,
 			wantedSellIn:  9,
 			wantedQuality: 0,
 		},
 		{
 			testName:      "Cheese Item Happy Path",
-			testItem:      items.MakeCheeseItem("Cheese Item", 10, 1),
+			testItem:      MakeCheeseItem("Cheese Item", 10, 1),
 			wantedAge:     1,
 			wantedSellIn:  9,
 			wantedQuality: 2,
@@ -94,7 +94,7 @@ func Test_Item_Managment(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.testName, func(tt *testing.T) {
-			ItemManager(tc.testItem)
+			main.ItemManager(tc.testItem)
 			assert.Equal(tt, tc.wantedAge, tc.testItem.Age())
 			assert.Equal(tt, tc.wantedSellIn, tc.testItem.SellIn())
 			assert.Equal(tt, tc.wantedQuality, tc.testItem.Quality())
