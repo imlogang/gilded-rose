@@ -18,7 +18,7 @@ func Test_Item_Managment(t *testing.T) {
 		wantedAge     int
 		wantedSellIn  int
 		wantedQuality int
-		testItem      Item
+		testItem      items.Item
 	}{
 		// {
 		// 	testName:      "Conjured Item Happy Path",
@@ -29,15 +29,15 @@ func Test_Item_Managment(t *testing.T) {
 		// },
 		{
 			testName:      "Conjured Item Happy Path",
-			testItem:      items.MakeConjuredItem(age: 0, sellIn: 10, quality: 2, degredationRate: 2, ageRate: 1),
+			testItem:      items.MakeConjuredItem("Conjured Item", 10, 2),
 			wantedAge:     1,
-			wantedSellIn:  10,
+			wantedSellIn:  9,
 			wantedQuality: 0,
 		},
 		{
 			testName:      "Legendary Item Happy Path",
-			testItem:      &items.GenericItem{age: 0, sellIn: 10, quality: 2, degredationRate: 0, ageRate: 1},
-			wantedAge:     1,
+			testItem:      items.MakeLegendaryItem("Legendary Item", 10, 2),
+			wantedAge:     0,
 			wantedSellIn:  10,
 			wantedQuality: 2,
 		},
@@ -48,13 +48,20 @@ func Test_Item_Managment(t *testing.T) {
 		// 	wantedSellIn:  9,
 		// 	wantedQuality: 0,
 		// },
-		// {
-		// 	testName:      "Standard Item Happy Path",
-		// 	testItem:      &StandardItem{age: 0, sellIn: 10, quality: 1},
-		// 	wantedAge:     1,
-		// 	wantedSellIn:  9,
-		// 	wantedQuality: 0,
-		// },
+		{
+			testName:      "Standard Item Happy Path",
+			testItem:      items.MakeStandardItem("Standard Item", 10, 1),
+			wantedAge:     1,
+			wantedSellIn:  9,
+			wantedQuality: 0,
+		},
+		{
+			testName:      "Cheese Item Happy Path",
+			testItem:      items.MakeCheeseItem("Cheese Item", 10, 1),
+			wantedAge:     1,
+			wantedSellIn:  9,
+			wantedQuality: 2,
+		},
 		// {
 		// 	testName:      "Standard Item Item Quality Does Not Go Below 0",
 		// 	testItem:      &StandardItem{age: 0, sellIn: 10, quality: 0},

@@ -11,16 +11,25 @@ type Item interface {
 	Age() int
 }
 
+const (
+	STANDARD  = iota
+	LEGENDARY = iota
+	CONJURED  = iota
+	CHEESE    = iota
+)
+
 type GenericItem struct {
 	name                 string
 	sellIn, quality, age int
 	degredationRate      int
 	ageRate              int
+	itemType             int
 }
 
 func (s *GenericItem) AgeItem() {
 	s.age += s.ageRate
-	if s.quality > 0 {
+	s.sellIn -= s.ageRate
+	if s.quality > 0 && s.quality < 50 {
 		if s.age > s.sellIn {
 			s.quality -= (s.degredationRate * 2)
 		} else {
@@ -56,6 +65,7 @@ func MakeStandardItem(name string, sellIn, quality int) *GenericItem {
 		quality:         quality,
 		degredationRate: 1,
 		ageRate:         1,
+		itemType:        STANDARD,
 	}
 }
 
@@ -66,6 +76,7 @@ func MakeConjuredItem(name string, sellIn, quality int) *GenericItem {
 		quality:         quality,
 		degredationRate: 2,
 		ageRate:         1,
+		itemType:        CONJURED,
 	}
 }
 
@@ -75,6 +86,18 @@ func MakeLegendaryItem(name string, sellIn, quality int) *GenericItem {
 		sellIn:          sellIn,
 		quality:         quality,
 		degredationRate: 0,
+		ageRate:         0,
+		itemType:        LEGENDARY,
+	}
+}
+
+func MakeCheeseItem(name string, sellIn, quality int) *GenericItem {
+	return &GenericItem{
+		name:            name,
+		sellIn:          sellIn,
+		quality:         quality,
+		degredationRate: -1,
 		ageRate:         1,
+		itemType:        CHEESE,
 	}
 }
