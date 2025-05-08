@@ -27,10 +27,14 @@ type GenericItem struct {
 	itemType             int
 }
 
+func ItemManager(item Item) {
+	item.AgeItem()
+}
+
 func (s *GenericItem) AgeItem() {
 	s.age += s.ageRate
 	s.sellIn -= s.ageRate
-	if s.quality > 0 && s.quality < 50 {
+	if s.quality >= 0 && s.quality <= 50 {
 		if s.age > s.sellIn {
 			s.quality -= (s.degradationRate * 2)
 		} else {
@@ -43,9 +47,7 @@ func (s *GenericItem) Display() {
 	fmt.Printf("Name: %s\nAge: %d\nSell in: %d\nQuality: %d\n\n", s.name, s.age, s.sellIn, s.quality)
 }
 
-func (s *GenericItem) Name() string {
-	return s.name
-}
+func (s *GenericItem) Name() string { return s.name }
 
 func (s *GenericItem) Quality() int {
 	return s.quality
