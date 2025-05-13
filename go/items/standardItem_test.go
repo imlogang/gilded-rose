@@ -43,13 +43,6 @@ func Test_Item_Management(t *testing.T) {
 			wantedSellIn:  9,
 			wantedQuality: 2,
 		},
-		{
-			testName:      "Backstage Item Happy Path",
-			testItem:      MakeBACKSTAGE_Item("Backstage Item", 20, 0),
-			wantedAge:     1,
-			wantedSellIn:  19,
-			wantedQuality: 1,
-		},
 	}
 
 	for _, tc := range testCases {

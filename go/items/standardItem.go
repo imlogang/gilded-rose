@@ -104,14 +104,3 @@ func MakeCheeseItem(name string, sellIn, quality int) *GenericItem {
 		itemType:        CHEESE,
 	}
 }
-
-func MakeBACKSTAGE_Item(name string, sellIn, quality int) *GenericItem {
-	return &GenericItem{
-		name:            name,
-		sellIn:          sellIn,
-		quality:         quality,
-		degradationRate: -1,
-		ageRate:         1,
-		itemType:        BACKSTAGE_PASSES,
-	}
-}
